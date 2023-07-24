@@ -54,9 +54,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![SVG Logo Maker][product-screenshot]](https://github.com/Pault26/10-Module-Logo-Maker)
 
 This project uses the command line to provide the user prompts which they can follow to make a simple logo in the svg format. The questions allow for you to use a multitude of colors, a three letter logo, and a shape that is either square, triangle, or circle!
+
+Youtube Walkthrough: https://youtu.be/ySH23IHgPWM
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
