@@ -1,8 +1,8 @@
+// Import required modules
 const inquirer = require("inquirer");
 const fs = require("fs");
 const createSVG = require("./lib/createSVG");
-
-// Questions
+// Define a set of questions to ask the user
 const questions = [
     {
         type: "list",
@@ -32,7 +32,7 @@ const questions = [
         message: "What color would you like for the text? (name or hexadecimal):",
     },
 ];
-
+// Function to run the prompt and generate SVG based on user responses
 async function run() {
     try {
         const response = await inquirer.prompt(questions);
@@ -48,5 +48,5 @@ async function run() {
         console.error("Error during the prompt:", error);
     }
 }
-
+// Initiate the run function to start the process
 run();
