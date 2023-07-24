@@ -1,10 +1,9 @@
 const inquirer = require("inquirer");
-const fs = require("fs")
+const fs = require("fs");
 const createSVG = require("./lib/createSVG");
 
 // Questions
-
-const questionLog = [
+const questions = [
     {
         type: "list",
         name: "shape",
@@ -14,43 +13,40 @@ const questionLog = [
     {
         type: "input",
         name: "shapeColor",
-        message: "What color would you like for the shape? (name or hexagon):",
+        message: "What color would you like for the shape? (name or hexadecimal):",
     },
     {
         type: "input",
         name: "company",
         message: "What is the abbreviation of your company (max of 3 letters):",
-        validate: function(input){
-            if (input.length > 3){
-                return "max of 3 letters allowed";
+        validate: function(input) {
+            if (input.length > 3) {
+                return "Please enter a maximum of 3 letters for the company abbreviation.";
             }
-            return true
-            }
+            return true;
+        },
     },
     {
         type: "input",
         name: "textColor",
-        message: "What color would you like for the text? (name or hexagon):",
+        message: "What color would you like for the text? (name or hexadecimal):",
     },
 ];
 
-// Create SVG
-
-// inquirer.createPromptModule(questionLog).then((response) => {
-
-//     fs.writeFile("logo.svg", createSVG(response), (err) =>
-//         err ? console.log(err) : console.log("generated logo.svg")
-//     );
-// });
-
-(async () => {
+async function run() {
     try {
-      const { prompt } = await import("inquirer");
-      const response = await prompt(questionLog);
-      fs.writeFile("logo.svg", createSVG(response), (err) =>
-        err ? console.log(err) : console.log("generated logo.svg")
-      );
+        const response = await inquirer.prompt(questions);
+        const svgContent = createSVG(response);
+        fs.writeFile("logo.svg", svgContent, (err) => {
+            if (err) {
+                console.error("Error generating logo.svg:", err);
+            } else {
+                console.log("Generated logo.svg");
+            }
+        });
     } catch (error) {
-      console.error(error);
+        console.error("Error during the prompt:", error);
     }
-  })();
+}
+
+run();
